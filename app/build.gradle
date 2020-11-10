@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "org.techtown.sharablemusic"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -53,5 +53,8 @@ dependencies {
 
     // Mockito framework
     testImplementation 'org.mockito:mockito-core:2.22.0'
+
+    //피카소 : 앨범커버 로딩 라이브러리
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

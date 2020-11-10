@@ -50,13 +50,26 @@ class MainActivity : AppCompatActivity() {
         }
         //허용 된 경우
         else
-        {
             setRecyclerView()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            0 -> if (grantResults.size > 0) {
+                //권한허용
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(this, "저장소 권한이 허용되었습니다.", Toast.LENGTH_SHORT).show()
+
+                    setRecyclerView()
+                }
+                else {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("권한 거절").setMessage("저장소 권한을 사용하지 않으면 앱을 이용할 수 없습니다.")
+                    builder.setPositiveButton("종료") { dialogInterface: DialogInterface?, i: Int -> finish() }.create().show()
+                }
+            }
         }
-
-
-
-
     }
 
     private fun setRecyclerView()
@@ -80,22 +93,5 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            0 -> if (grantResults.size > 0) {
-                //권한허용
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                {
-                    Toast.makeText(this, "저장소 권한이 허용되었습니다.", Toast.LENGTH_SHORT).show()
 
-                    setRecyclerView()
-                }
-                else {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("권한 거절").setMessage("저장소 권한을 사용하지 않으면 앱을 이용할 수 없습니다.")
-                    builder.setPositiveButton("종료") { dialogInterface: DialogInterface?, i: Int -> finish() }.create().show()
-                }
-            }
-        }
-    }
 }

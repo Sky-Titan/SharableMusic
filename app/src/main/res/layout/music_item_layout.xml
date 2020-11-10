@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/album_cover_imageview"
-            android:src="@{item.albumArt}"
+            android:src="@{item.albumArt == null ? @drawable/ic_baseline_audiotrack_24 :item.albumArt}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
